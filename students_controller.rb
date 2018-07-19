@@ -27,7 +27,20 @@ also_reload('./models/*')
     erb( :create )
   end
 # edit
-
+  get '/student_list/:id/edit' do
+    @house = House.all
+    @student = Student.find(params['id'])
+    erb( :edit )
+  end
 # update
-
+  post '/student_list/:id' do
+    @student_list = Student.new( params )
+    student.update()
+    redirect to "student_list/" + params['id']
+  end
 # destroy
+  post '/student_list/:id/delete' do
+    @student = Student.find( params[:id] )
+    @student.delete()
+    redirect to "student_list"
+  end
